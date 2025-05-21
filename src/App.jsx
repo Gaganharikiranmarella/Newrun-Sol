@@ -15,7 +15,9 @@ function App() {
           <hr />
         </header>
 
-        <main>Projects List</main>
+        <main>
+          <h1>Projects List</h1>  
+        </main>
 
         <footer>
           <hr />
