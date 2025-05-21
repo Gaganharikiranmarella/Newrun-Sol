@@ -12,15 +12,14 @@ function App() {
         <header>
           <h1>Newrun Solutions</h1>
           <h2>Where Curiosity merges with Innovation</h2>
+          <hr />
         </header>
 
-        <main>
-
-        </main>
+        <main>Projects List</main>
 
         <footer>
+          <hr />
           <p>&copy; Newrun Solutions, All Rights Reserved</p>
-
         </footer>
       </div>
     </>
