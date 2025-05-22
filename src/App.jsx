@@ -10,7 +10,7 @@ function App() {
     <div>
       <BrowserRouter>
         <header>
-          <h1>My Online Shop</h1>
+          <h1>Online Shopping Section</h1>
           <Link to="/">Home</Link>-
           <Link to="/cart">Cart</Link>
           <hr />
