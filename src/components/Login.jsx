@@ -7,7 +7,7 @@ export default function Login() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
 
-  if (showRegister) return <Register />;
+  if (showRegister) return <Register goToLogin={() => setShowRegister(false)} />;
   if (loggedIn) return <Welcome username={username} />;
 
   const handleSubmit = () => {
