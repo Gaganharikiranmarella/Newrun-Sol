@@ -1,157 +1,119 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
+/* Base Styles */
 body {
-  background-color: #121212;
-  color: #e0e0e0;
-  transition: all 0.3s ease-in-out;
+  background: linear-gradient(to right, #1f1c2c, #928dab);
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 0.3s ease;
 }
 
 h1, h2 {
-  color: #ffffff;
   text-align: center;
   margin-bottom: 1rem;
-  animation: fadeDown 1s ease-in;
+  animation: slideDown 0.8s ease-out;
+  color: #f8f8f8;
 }
 
 button {
-  background: #2d2d2d;
+  background: #ff6f61;
   color: #fff;
   border: none;
   padding: 0.6rem 1.2rem;
   margin: 0.4rem auto;
-  cursor: pointer;
-  border-radius: 8px;
   display: block;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
   transition: background 0.3s, transform 0.3s;
 }
 
 button:hover {
-  background: #444;
+  background: #ff856e;
   transform: scale(1.05);
 }
 
 input, select {
   width: 100%;
-  max-width: 280px;
-  margin: 0.4rem auto;
+  max-width: 300px;
   padding: 0.6rem;
-  background-color: #1e1e1e;
-  color: #fff;
-  border: 1px solid #444;
-  border-radius: 6px;
+  margin: 0.5rem auto;
   display: block;
+  background: #fff;
+  color: #222;
+  border: 2px solid #ff6f61;
+  border-radius: 6px;
   transition: border 0.3s ease;
 }
 
 input:focus, select:focus {
-  border-color: #888;
+  border-color: #ff3b2e;
   outline: none;
 }
 
 div {
-  max-width: 350px;
+  background: #2a2a72;
+  max-width: 380px;
   margin: 2rem auto;
-  padding: 1.5rem;
-  background-color: #1a1a1a;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  animation: fadeIn 0.6s ease;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-footer, header {
-  text-align: center;
-  padding: 1rem;
-  background: #1a1a1a;
-  color: #aaa;
-  border-top: 1px solid #333;
-}
-
-a {
-  color: #ccc;
-  margin: 0 0.5rem;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-a:hover {
-  color: #fff;
-}
-
-.cart-item, .product-item {
-  background: #1e1e1e;
-  padding: 1rem;
-  margin: 1rem 0;
-  border: 1px solid #333;
-  border-radius: 8px;
-  transition: transform 0.3s;
-}
-
-.cart-item:hover, .product-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 10px #111;
-}
-
+/* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes fadeDown {
+@keyframes slideDown {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Links */
+a {
+  color: #ffcb05;
+  margin: 0 0.5rem;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Styling (Complementary Light Theme) */
 @media only screen and (max-width: 600px) {
   body {
-    background-color: #eeeeee;
-    color: #111111;
+    background: linear-gradient(to right, #ffffff, #ffe0e0);
+    color: #222;
   }
 
   div {
-    background-color: #ffffff;
-    color: #111;
-    box-shadow: 0 0 10px #aaa;
-  }
-
-  input, select {
-    background-color: #f0f0f0;
-    color: #000;
-    border: 1px solid #ccc;
-  }
-
-  input:focus, select:focus {
-    border-color: #888;
+    background: #f9f9f9;
+    color: #222;
+    box-shadow: 0 0 10px #ccc;
   }
 
   button {
-    background-color: #ddd;
-    color: #111;
+    background: #ff3366;
+    color: #fff;
   }
 
   button:hover {
-    background-color: #ccc;
+    background: #ff5577;
   }
 
-  header, footer {
-    background: #f5f5f5;
-    color: #444;
-  }
-
-  a {
-    color: #333;
-  }
-
-  a:hover {
+  input, select {
+    background: #fff;
+    border-color: #ff3366;
     color: #000;
   }
 
-  .product-item, .cart-item {
-    background-color: #f7f7f7;
-    border-color: #bbb;
+  h1, h2 {
+    color: #333;
+  }
+
+  a {
+    color: #cc0000;
   }
 }
