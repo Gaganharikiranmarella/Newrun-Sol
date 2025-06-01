@@ -1,6 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Register({ goToLogin }) {
+  const [registered, setRegistered] = useState(false);
+
+  const handleRegister = () => {
+    // You can add validation here if needed
+    setRegistered(true);
+  };
+
+  if (registered) {
+    return (
+      <div>
+        <h2>Registration Successful</h2>
+        <p>Thank you for registering!</p>
+        <button onClick={goToLogin} style={{ marginTop: '1rem' }}>
+          Back to Login
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h2>Register</h2>
@@ -15,7 +34,7 @@ export default function Register({ goToLogin }) {
       </select><br />
       <input type="password" placeholder="Password" required /><br />
       <input type="password" placeholder="Confirm Password" required /><br />
-      <button>Register</button>
+      <button onClick={handleRegister}>Register</button>
       
       <p style={{ marginTop: '1rem', cursor: 'pointer', color: '#ff6f61' }} onClick={goToLogin}>
         Already have an account? Login
