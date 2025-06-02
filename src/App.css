@@ -1,119 +1,76 @@
-/* Base Styles */
+/* General Reset */
 body {
-  background: linear-gradient(to right, #1f1c2c, #928dab);
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+/* Header */
+header {
+  background-color: #1976d2;
+  color: white;
+  padding: 15px 20px;
+}
+
+header h1 {
+  margin: 0 0 10px;
+}
+
+nav a {
+  margin-right: 15px;
   color: #fff;
-  font-family: 'Segoe UI', sans-serif;
-  transition: background 0.3s ease;
-}
-
-h1, h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-  animation: slideDown 0.8s ease-out;
-  color: #f8f8f8;
-}
-
-button {
-  background: #ff6f61;
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  margin: 0.4rem auto;
-  display: block;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s, transform 0.3s;
-}
-
-button:hover {
-  background: #ff856e;
-  transform: scale(1.05);
-}
-
-input, select {
-  width: 100%;
-  max-width: 300px;
-  padding: 0.6rem;
-  margin: 0.5rem auto;
-  display: block;
-  background: #fff;
-  color: #222;
-  border: 2px solid #ff6f61;
-  border-radius: 6px;
-  transition: border 0.3s ease;
-}
-
-input:focus, select:focus {
-  border-color: #ff3b2e;
-  outline: none;
-}
-
-div {
-  background: #2a2a72;
-  max-width: 380px;
-  margin: 2rem auto;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Links */
-a {
-  color: #ffcb05;
-  margin: 0 0.5rem;
   text-decoration: none;
+  font-weight: bold;
 }
 
-a:hover {
+nav a:hover {
   text-decoration: underline;
 }
 
-/* Mobile Styling (Complementary Light Theme) */
-@media only screen and (max-width: 600px) {
-  body {
-    background: linear-gradient(to right, #ffffff, #ffe0e0);
-    color: #222;
-  }
+/* Main Content */
+main {
+  padding: 20px;
+}
 
-  div {
-    background: #f9f9f9;
-    color: #222;
-    box-shadow: 0 0 10px #ccc;
-  }
+/* Footer */
+footer {
+  background-color: #eeeeee;
+  padding: 10px 20px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+}
 
-  button {
-    background: #ff3366;
-    color: #fff;
-  }
+/* Card-style sections like products */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ccc;
+  text-align: center;
+}
 
-  button:hover {
-    background: #ff5577;
-  }
+.title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #1976d2;
+}
 
-  input, select {
-    background: #fff;
-    border-color: #ff3366;
-    color: #000;
-  }
+.temperature {
+  font-size: 40px;
+  font-weight: bold;
+  color: #e53935;
+}
 
-  h1, h2 {
-    color: #333;
-  }
-
-  a {
-    color: #cc0000;
-  }
+/* Product list */
+.product {
+  background-color: #fff;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
 }
