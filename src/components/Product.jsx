@@ -7,7 +7,8 @@ export default function Product() {
 
   useEffect(() => {
     axios
-      .get("https://node-apps-gagan.vercel.app/products")
+      .get(`${API}/products`)
+
       .then((res) => {
         setProducts(res.data);
       })
