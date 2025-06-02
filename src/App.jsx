@@ -1,12 +1,10 @@
-import { useState } from "react";
-import reactLogo from "./assets/logo.svg";
-import viteLogo from "./assets/logo.svg";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
+
 import Product from "./components/Product";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
-import Welcome from "./components/Welcome"; // Optional: in case direct routing needed
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Welcome from "./components/Welcome";
 
 function App() {
   return (
@@ -14,9 +12,11 @@ function App() {
       <BrowserRouter>
         <header>
           <h1>Online Shopping Section</h1>
-          <Link to="/">Home</Link> -
-          <Link to="/cart">Cart</Link> -
-          <Link to="/login">Login</Link>
+          <nav>
+            <Link to="/">Home</Link> |{" "}
+            <Link to="/cart">Cart</Link> |{" "}
+            <Link to="/login">Login</Link>
+          </nav>
           <hr />
         </header>
 
@@ -32,7 +32,7 @@ function App() {
 
         <footer>
           <hr />
-          &copy;Gagan Hari Kiran Marella; 2025. All rights Reserved.
+          &copy; Gagan Hari Kiran Marella, 2025. All rights reserved.
         </footer>
       </BrowserRouter>
     </div>
