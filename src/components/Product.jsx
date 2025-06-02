@@ -3,7 +3,7 @@ import axios from "axios";
 //import "./Product.css";
 
 export default function Product() {
-  //const API = "https://node-apps-gagan.vercel.app";
+  const API = "https://node-apps-gagan.vercel.app";
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
