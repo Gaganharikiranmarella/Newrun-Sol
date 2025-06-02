@@ -17,7 +17,6 @@ function App() {
             <Link to="/cart">Cart</Link> |{" "}
             <Link to="/login">Login</Link>
           </nav>
-          <hr />
         </header>
 
         <main>
