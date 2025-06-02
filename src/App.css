@@ -1,4 +1,4 @@
-/* Reset and Base */
+/* ====== Base Reset ====== */
 * {
   margin: 0;
   padding: 0;
@@ -7,131 +7,123 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f0f4f8;
+  background-color: #f2f4f7;
   color: #333;
   line-height: 1.6;
 }
 
-/* Header */
-header {
-  background-color: #0077cc;
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
-  animation: slideDown 0.6s ease-out;
-}
-
-header h1 {
-  margin-bottom: 10px;
-}
-
-nav a {
-  margin: 0 10px;
-  color: white;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-nav a:hover {
-  color: #ffeb3b;
-}
-
-/* Footer */
-footer {
-  background-color: #e0e0e0;
+/* ====== General Containers ====== */
+div {
   padding: 10px;
-  text-align: center;
-  font-size: 14px;
-  color: #555;
+  animation: fadeIn 0.5s ease;
 }
 
-/* Main */
-main {
-  padding: 20px;
-  animation: fadeIn 0.8s ease-in;
-}
-
-/* Card / Box */
-.card, .form-container {
-  background-color: white;
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-
-.card:hover, .form-container:hover {
-  transform: scale(1.02);
-}
-
-/* Temperature Display */
-.temperature {
-  font-size: 40px;
-  color: #e53935;
-  font-weight: bold;
-}
-
-/* Product */
-.product {
-  background: #fff;
-  border: 1px solid #ddd;
-  margin: 10px 0;
-  padding: 15px;
-  border-radius: 6px;
-}
-
-/* Login / Register Form */
-.form-container h2 {
-  margin-bottom: 20px;
-  text-align: center;
+h1, h2 {
   color: #0077cc;
-}
-
-.form-container input {
-  width: 100%;
-  padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
 }
 
-.form-container button {
-  width: 100%;
-  padding: 10px;
+/* ====== Buttons ====== */
+button {
   background-color: #0077cc;
   color: white;
   border: none;
+  padding: 10px 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 6px;
-  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 16px;
+  transition: background 0.3s ease;
 }
 
-.form-container button:hover {
-  background-color: #005999;
+button:hover {
+  background-color: #005fa3;
 }
 
-/* Animations */
-@keyframes slideDown {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+/* ====== Inputs & Select ====== */
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
 }
 
+select {
+  background-color: #fff;
+}
+
+/* ====== Login / Register Layout ====== */
+.form-container {
+  max-width: 400px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ====== Product List ====== */
+.product-container {
+  max-width: 900px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.product-title {
+  font-size: 32px;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+
+.product-card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+.product-card h2 {
+  font-size: 22px;
+  color: #333;
+}
+
+/* ====== Welcome Message ====== */
+.welcome-container {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 22px;
+  color: #0077cc;
+}
+
+/* ====== Link Prompt ====== */
+p[style*="cursor: pointer"] {
+  text-align: center;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+p[style*="cursor: pointer"]:hover {
+  color: #d43f00;
+}
+
+/* ====== Animations ====== */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
