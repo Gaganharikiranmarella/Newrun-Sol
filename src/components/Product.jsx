@@ -12,7 +12,7 @@ export default function Product() {
 
       .then((res) => {
         setProducts(res.data);
-      })
+      }) 
       .catch((err) => {
         console.error("Error fetching products:", err);
       });
