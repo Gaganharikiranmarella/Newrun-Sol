@@ -7,75 +7,115 @@
 
 body {
   font-family: 'Poppins', 'Segoe UI', sans-serif;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #222;
+  /* VERY translucent background */
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #333;
   line-height: 1.6;
+  transition: background-color 0.5s ease;
+  min-height: 100vh;
+}
+
+/* ====== Header Navigation (Glassmorphism + Modern) ====== */
+header {
+  backdrop-filter: blur(12px);
+  background: rgba(0, 119, 204, 0.15);
+  padding: 20px 30px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.5s ease;
+}
+
+header h1 {
+  color: #fff;
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+header a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
   transition: all 0.3s ease-in-out;
-  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
 }
 
-/* ====== General Containers ====== */
-div {
-  padding: 10px;
-  animation: fadeInUp 1s ease forwards;
-}
-
-h1, h2 {
+header a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
   color: #0077cc;
-  margin-bottom: 15px;
-  font-family: 'Poppins', sans-serif;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 119, 204, 0.5);
 }
 
-/* ====== Buttons ====== */
+/* ====== Buttons (Glow + Smooth) ====== */
 button {
-  background-color: rgba(0, 119, 204, 0.7);
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
   color: white;
   border: none;
-  padding: 12px 18px;
-  margin: 10px 0;
-  border-radius: 12px;
+  padding: 12px 20px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
-  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  box-shadow: 0 0 15px rgba(0, 114, 255, 0.6);
   transition: all 0.3s ease;
-  box-shadow: 0 0 12px rgba(0, 119, 204, 0.5);
 }
 
 button:hover {
-  background-color: rgba(0, 95, 163, 0.8);
-  transform: scale(1.07);
-  box-shadow: 0 0 18px rgba(0, 119, 204, 0.8);
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 114, 255, 0.9);
 }
 
-/* ====== Inputs & Select ====== */
+/* ====== Forms ====== */
 input, select {
   width: 100%;
   padding: 10px;
   margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
   font-size: 15px;
-  font-family: 'Poppins', sans-serif;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255,255,255,0.1);
+  color: #222;
   backdrop-filter: blur(6px);
+  transition: border-color 0.3s ease;
 }
 
-/* ====== Form & Product Layout ====== */
-.form-container, .product-card {
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.3);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  transition: all 0.4s ease;
+input:focus, select:focus {
+  border-color: #0077cc;
+  outline: none;
 }
 
+/* ====== Form Container ====== */
 .form-container {
-  max-width: 420px;
-  margin: 40px auto;
+  max-width: 400px;
+  margin: 30px auto;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.05);
 }
 
+/* ====== Product Layout ====== */
 .product-container {
   max-width: 900px;
   margin: 30px auto;
@@ -84,6 +124,7 @@ input, select {
 
 .product-title {
   font-size: 32px;
+  color: #222;
   margin-bottom: 20px;
 }
 
@@ -94,8 +135,24 @@ input, select {
   padding: 10px;
 }
 
+.product-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 .product-card:hover {
-  transform: translateY(-5px);
+  transform: scale(1.03);
+  box-shadow: 0 4px 20px rgba(0, 114, 255, 0.3);
+}
+
+.product-card h2 {
+  font-size: 22px;
+  color: #222;
 }
 
 /* ====== Welcome Message ====== */
@@ -104,48 +161,6 @@ input, select {
   margin-top: 50px;
   font-size: 22px;
   color: #0077cc;
-  animation: fadeInUp 1s ease forwards;
-}
-
-/* ====== Header Navigation ====== */
-header {
-  background: rgba(0, 119, 204, 0.6);
-  padding: 15px;
-  text-align: center;
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-header h1 {
-  color: white;
-  margin-bottom: 10px;
-  font-family: 'Poppins', sans-serif;
-}
-
-header a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 16px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  transition: background 0.3s ease;
-}
-
-header a:hover {
-  background-color: rgba(0, 95, 163, 0.6);
-}
-
-/* ====== Link Prompt ====== */
-p[style*="cursor: pointer"] {
-  text-align: center;
-  font-size: 14px;
-  transition: color 0.3s ease;
-}
-
-p[style*="cursor: pointer"]:hover {
-  color: #d43f00;
 }
 
 /* ====== About Us Section ====== */
@@ -153,7 +168,6 @@ p[style*="cursor: pointer"]:hover {
   max-width: 900px;
   margin: 2rem auto;
   padding: 20px;
-  animation: fadeInUp 1s ease forwards;
 }
 
 .about-content {
@@ -167,11 +181,12 @@ p[style*="cursor: pointer"]:hover {
 .about-text {
   flex: 1 1 400px;
   text-align: justify;
-  background: rgba(255, 255, 255, 0.25);
-  padding: 20px;
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  color: #222;
+}
+
+.about-text h1 {
+  color: #0077cc;
+  margin-bottom: 15px;
 }
 
 .about-image {
@@ -183,71 +198,55 @@ p[style*="cursor: pointer"]:hover {
 .about-image img {
   max-width: 100%;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
 
 .other-works-button {
   margin-top: 20px;
-  font-weight: bold;
 }
 
-/* ====== Animations ====== */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
+/* ====== Animations for buttons and hover ====== */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 114, 255, 0.5);
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+  50% {
+    box-shadow: 0 0 25px rgba(0, 114, 255, 0.8);
   }
 }
 
-/* ====== Media Queries ====== */
-
-/* Laptop */
+/* ====== Media Queries for translucent background colors ====== */
 @media (min-width: 1025px) {
   body {
-    background: linear-gradient(
-      to bottom right,
-      rgba(255, 255, 0, 0.3),
-      rgba(0, 255, 0, 0.3)
-    );
+    background-color: rgba(255, 255, 150, 0.03); /* very translucent yellow */
+  }
+
+  header {
+    background: rgba(144, 238, 144, 0.12); /* very translucent green */
   }
 }
 
-/* Tablet */
 @media (min-width: 768px) and (max-width: 1024px) {
   body {
-    background: linear-gradient(
-      to bottom right,
-      rgba(255, 0, 0, 0.3),
-      rgba(0, 0, 255, 0.3)
-    );
+    background-color: rgba(255, 0, 0, 0.03); /* very translucent red */
+  }
+
+  header {
+    background-color: rgba(0, 0, 255, 0.12); /* very translucent blue */
   }
 }
 
-/* Phone */
 @media (max-width: 767px) {
   body {
     background: linear-gradient(
-      to bottom right,
-      rgba(255, 0, 0, 0.3),
-      rgba(255, 105, 180, 0.3),
-      rgba(0, 255, 0, 0.3)
-    );
+      135deg,
+      rgba(255, 0, 0, 0.03),
+      rgba(255, 192, 203, 0.03),
+      rgba(144, 238, 144, 0.03)
+    ); /* red, pink, green */
   }
 
-  .about-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  header h1 {
-    font-size: 20px;
-  }
-
-  .product-title {
-    font-size: 24px;
+  header {
+    background: rgba(255, 105, 180, 0.12); /* translucent pink for header */
   }
 }

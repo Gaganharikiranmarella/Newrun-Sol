@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
+import "../App.css";
 
 const API = "https://node-apps-gagan.vercel.app";
 
@@ -34,7 +34,7 @@ export default function AboutUs() {
         </div>
 
         <div className="about-image">
-          <img src="/images/aboutus.jpg" alt="About Us" />
+          <img src="public/images/aboutus.jpg" alt="About Us" />
         </div>
       </div>
 
