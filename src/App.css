@@ -153,3 +153,44 @@ header a {
 header a:hover {
   background-color: #005fa3;
 }
+
+.about-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 20px;
+}
+
+.about-content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1 1 400px;
+  text-align: justify;
+  color: #333;
+}
+
+.about-text h1 {
+  color: #0077cc; /* matches your global h1 style */
+  margin-bottom: 15px;
+}
+
+.about-image {
+  flex: 1 1 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.about-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.other-works-button {
+  margin-top: 20px;
+}

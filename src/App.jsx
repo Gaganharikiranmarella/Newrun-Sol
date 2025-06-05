@@ -5,6 +5,7 @@ import Product from "./components/Product";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
 import Welcome from "./components/Welcome";
+import AboutUs from "./components/AboutUs";  
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
           <nav>
             <Link to="/">Home</Link> |{" "}
             <Link to="/cart">Cart</Link> |{" "}
-            <Link to="/login">Login</Link>
+            <Link to="/login">Login</Link> |{" "}
+            <Link to="/about">About Us</Link>  
           </nav>
         </header>
 
@@ -26,6 +28,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/welcome" element={<Welcome username="User" />} />
+            <Route path="/about" element={<AboutUs />} />  
           </Routes>
         </main>
 
