@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Cart({ cart, addToCart, user }) {
   const items = Object.values(cart);
   const navigate = useNavigate();
+  const [isOrdering, setIsOrdering] = useState(false);
 
   const totalPrice = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -12,6 +13,8 @@ export default function Cart({ cart, addToCart, user }) {
   );
 
   const placeOrder = async () => {
+    if (isOrdering) return; // prevent multiple clicks
+    setIsOrdering(true);
     try {
       const formattedItems = items.map(({ name, price, quantity }) => ({
         name,
@@ -26,8 +29,11 @@ export default function Cart({ cart, addToCart, user }) {
       });
 
       alert("Order successful, Thank you!");
+      // Optionally clear cart here or navigate away
     } catch (err) {
       alert("Error placing order.");
+    } finally {
+      setIsOrdering(false);
     }
   };
 
@@ -53,24 +59,26 @@ export default function Cart({ cart, addToCart, user }) {
     <div className="cart-container">
       <h2>Your Cart</h2>
       {items.map((item) => (
-        <div key={item._id} className="cart-item">
+        <div key={item._id || item.name} className="cart-item">
           <h3>{item.name}</h3>
           <p>Price: ₹{item.price}</p>
           <div className="cart-controls">
             <button
-              onClick={() => addToCart(item, item.quantity - 1)}
-              disabled={item.quantity === 0}
+              onClick={() => addToCart(item, Math.max(item.quantity - 1, 0))}
+              disabled={item.quantity === 1} // disable at 1 to prevent zero or negative
             >
               -
             </button>
             <span>{item.quantity}</span>
             <button onClick={() => addToCart(item, item.quantity + 1)}>+</button>
           </div>
-          <p>Total: ₹{item.price * item.quantity}</p>
+          <p>Total: ₹{(item.price * item.quantity).toFixed(2)}</p>
         </div>
       ))}
       <h3>Total Price: ₹{totalPrice.toFixed(2)}</h3>
-      <button onClick={placeOrder}>Order</button>
+      <button onClick={placeOrder} disabled={isOrdering}>
+        {isOrdering ? "Ordering..." : "Order"}
+      </button>
     </div>
   );
 }
