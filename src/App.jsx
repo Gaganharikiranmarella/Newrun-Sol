@@ -36,10 +36,12 @@ function App() {
   useEffect(() => {
     if (!user) return;
     const itemsArray = Object.values(cart);
-    axios.post("https://node-apps-gagan.vercel.app/cart", {
-      userId: user._id,
-      items: itemsArray,
-    }).catch((e) => console.error("Failed to sync cart:", e));
+    axios
+      .post("https://node-apps-gagan.vercel.app/cart", {
+        userId: user._id,
+        items: itemsArray,
+      })
+      .catch((e) => console.error("Failed to sync cart:", e));
   }, [cart, user]);
 
   const addToCart = (product, quantity) => {
@@ -72,18 +74,21 @@ function App() {
     }));
     const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
 
-    axios.post("https://node-apps-gagan.vercel.app/orders", {
-      email: user.email,
-      items,
-      total,
-    }).then(() => {
-      alert("Order successful, Thank you!");
-      setCart({});
-      axios.post("https://node-apps-gagan.vercel.app/cart", {
-        userId: user._id,
-        items: [],
-      });
-    }).catch((e) => console.error("Order failed:", e));
+    axios
+      .post("https://node-apps-gagan.vercel.app/orders", {
+        email: user.email,
+        items,
+        total,
+      })
+      .then(() => {
+        alert("Order successful, Thank you!");
+        setCart({});
+        axios.post("https://node-apps-gagan.vercel.app/cart", {
+          userId: user._id,
+          items: [],
+        });
+      })
+      .catch((e) => console.error("Order failed:", e));
   };
 
   if (showLogin) {
@@ -102,8 +107,7 @@ function App() {
         <header>
           <h1>Online Shopping Section</h1>
           <nav>
-            <Link to="/">Home</Link> |{" "}
-            <Link to="/cart">Cart</Link> |{" "}
+            <Link to="/">Home</Link> | <Link to="/cart">Cart</Link> |{" "}
             {user ? (
               <>
                 <span>Hi, {user.username}</span>{" "}
@@ -112,7 +116,14 @@ function App() {
               </>
             ) : (
               <button
-                style={{ cursor: "pointer", border: "none", background: "none", padding: 0, color: "blue", textDecoration: "underline" }}
+                style={{
+                  cursor: "pointer",
+                  border: "none",
+                  background: "none",
+                  padding: 0,
+                  color: "blue",
+                  textDecoration: "underline",
+                }}
                 onClick={() => setShowLogin(true)}
               >
                 Login
@@ -134,23 +145,13 @@ function App() {
             />
             <Route
               path="/cart"
-              element={
-                <Cart
-                  cartItems={cart}
-                  isLoggedIn={!!user}
-                  addToCart={addToCart}
-                  onOrder={handleOrder}
-                  onLoginRedirect={() => setShowLogin(true)}
-                />
-              }
+              element={<Cart cart={cart} addToCart={addToCart} user={user} />}
             />
+
             <Route
               path="/login"
               element={
-                <Login
-                  onLogin={handleLogin}
-                  backToCartAvailable={false}
-                />
+                <Login onLogin={handleLogin} backToCartAvailable={false} />
               }
             />
             <Route

@@ -2,23 +2,25 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function Cart({ cart, addToCart }) {
+export default function Cart({ cart = {}, addToCart, user }) {
   const [currentUser, setCurrentUser] = useState(null);
-  const items = Object.values(cart || {});
   const navigate = useNavigate();
   const [isOrdering, setIsOrdering] = useState(false);
+  const items = Object.values(cart);
 
+  // Make sure user is fetched from localStorage correctly
   useEffect(() => {
-    const stored = localStorage.getItem("user");
-    if (stored) {
+    if (user) {
+      setCurrentUser(user);
+    } else {
       try {
-        const parsed = JSON.parse(stored);
-        if (parsed?.email) setCurrentUser(parsed);
+        const stored = JSON.parse(localStorage.getItem("user"));
+        if (stored?.email) setCurrentUser(stored);
       } catch (err) {
-        console.error("Invalid user in localStorage");
+        console.log("Invalid localStorage user");
       }
     }
-  }, []);
+  }, [user]);
 
   const totalPrice = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -26,7 +28,7 @@ export default function Cart({ cart, addToCart }) {
   );
 
   const placeOrder = async () => {
-    if (isOrdering || !currentUser) return;
+    if (isOrdering || !currentUser?.email) return;
     setIsOrdering(true);
     try {
       const formattedItems = items.map(({ name, price, quantity }) => ({
@@ -49,17 +51,17 @@ export default function Cart({ cart, addToCart }) {
     }
   };
 
-  if (!currentUser) {
+  // 1. Show login message only if currentUser is not ready
+  if (!currentUser?.email) {
     return (
       <div className="cart-container">
         <h2>Please Login</h2>
-        <button onClick={() => navigate("/login")}>
-          Login to proceed with order
-        </button>
+        <button onClick={() => navigate("/login")}>Login to proceed with order</button>
       </div>
     );
   }
 
+  // 2. Empty cart check
   if (items.length === 0) {
     return (
       <div className="cart-container">
@@ -69,6 +71,7 @@ export default function Cart({ cart, addToCart }) {
     );
   }
 
+  // 3. Main Cart UI
   return (
     <div className="cart-container">
       <h2>Your Cart</h2>
@@ -78,17 +81,13 @@ export default function Cart({ cart, addToCart }) {
           <p>Price: ₹{item.price}</p>
           <div className="cart-controls">
             <button
-              onClick={() =>
-                addToCart(item, Math.max(item.quantity - 1, 1))
-              }
-              disabled={item.quantity <= 1}
+              onClick={() => addToCart(item, Math.max(item.quantity - 1, 1))}
+              disabled={item.quantity === 1}
             >
               -
             </button>
             <span>{item.quantity}</span>
-            <button onClick={() => addToCart(item, item.quantity + 1)}>
-              +
-            </button>
+            <button onClick={() => addToCart(item, item.quantity + 1)}>+</button>
           </div>
           <p>Total: ₹{(item.price * item.quantity).toFixed(2)}</p>
         </div>
