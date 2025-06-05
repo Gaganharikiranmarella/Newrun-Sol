@@ -20,11 +20,11 @@ export default function Register({ goToLogin }) {
         email,
         phone,
         country,
-        password,
+        pass: password,  // changed here
       });
       setRegistered(true);
     } catch (err) {
-      alert("Error registering user: " + err.response?.data?.message || err.message);
+      alert("Error registering user: " + (err.response?.data?.message || err.message));
     }
   };
 

@@ -15,9 +15,9 @@ export default function Login() {
     try {
       const res = await axios.post('https://node-apps-gagan.vercel.app/users/login', {
         email,
-        password,
+        pass: password,  // changed here
       });
-      setUsername(res.data.username);
+      setUsername(res.data.user?.username || '');  // safe check for username
       setLoggedIn(true);
     } catch (err) {
       alert("Invalid email or password");
