@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 
 import Product from "./components/Product";
@@ -6,22 +6,21 @@ import Cart from "./components/Cart";
 import Login from "./components/Login";
 import Welcome from "./components/Welcome";
 import AboutUs from "./components/AboutUs";
+import OrderHistory from "./components/OrderHistory";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
-  const [user, setUser] = useState(null); // logged in user info
-  const [cart, setCart] = useState({}); // { productId: { ...product, quantity } }
+  const [user, setUser] = useState(null);
+  const [cart, setCart] = useState({});
   const [showLogin, setShowLogin] = useState(false);
 
-  // Fetch cart from backend when user logs in
   useEffect(() => {
     if (user) {
       axios
         .get(`https://node-apps-gagan.vercel.app/cart/${user._id}`)
         .then((res) => {
           const items = res.data.items || [];
-          // convert array to object keyed by productId
           const cartObj = {};
           items.forEach((item) => {
             cartObj[item.productId] = item;
@@ -34,7 +33,6 @@ function App() {
     }
   }, [user]);
 
-  // Sync cart to backend whenever cart changes and user is logged in
   useEffect(() => {
     if (!user) return;
     const itemsArray = Object.values(cart);
@@ -67,17 +65,27 @@ function App() {
   };
 
   const handleOrder = () => {
-    alert("Order successful, Thank you!");
-    setCart({});
-    if (user) {
+    const items = Object.values(cart).map(({ name, price, quantity }) => ({
+      name,
+      price,
+      qty: quantity,
+    }));
+    const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+    axios.post("https://node-apps-gagan.vercel.app/orders", {
+      email: user.email,
+      items,
+      total,
+    }).then(() => {
+      alert("Order successful, Thank you!");
+      setCart({});
       axios.post("https://node-apps-gagan.vercel.app/cart", {
         userId: user._id,
         items: [],
       });
-    }
+    }).catch((e) => console.error("Order failed:", e));
   };
 
-  // If showLogin flag is true, show Login component with Back to Cart button
   if (showLogin) {
     return (
       <Login
@@ -96,18 +104,19 @@ function App() {
           <nav>
             <Link to="/">Home</Link> |{" "}
             <Link to="/cart">Cart</Link> |{" "}
-            {!user ? (
+            {user ? (
+              <>
+                <span>Hi, {user.username}</span>{" "}
+                <button onClick={handleLogout}>Logout</button> |{" "}
+                <Link to="/orders">Order History</Link>
+              </>
+            ) : (
               <button
                 style={{ cursor: "pointer", border: "none", background: "none", padding: 0, color: "blue", textDecoration: "underline" }}
                 onClick={() => setShowLogin(true)}
               >
                 Login
               </button>
-            ) : (
-              <>
-                <span>Hi, {user.username}</span>{" "}
-                <button onClick={handleLogout}>Logout</button>
-              </>
             )}{" "}
             | <Link to="/about">About Us</Link>
           </nav>
@@ -144,7 +153,14 @@ function App() {
                 />
               }
             />
-            <Route path="/welcome" element={<Welcome username={user?.username || "User"} />} />
+            <Route
+              path="/welcome"
+              element={<Welcome username={user?.username || "User"} />}
+            />
+            <Route
+              path="/orders"
+              element={<OrderHistory email={user?.email || ""} />}
+            />
             <Route path="/about" element={<AboutUs />} />
           </Routes>
         </main>

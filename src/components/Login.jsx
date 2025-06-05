@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Register from "./Register";
 import Welcome from "./Welcome";
 import axios from "axios";
@@ -7,8 +7,9 @@ export default function Login({ onLogin, backToCartAvailable = false, onBackToCa
   const [showRegister, setShowRegister] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState(""); // password field is 'pass'
+  const [pass, setPass] = useState("");
   const [error, setError] = useState("");
+  const [orders, setOrders] = useState([]);
 
   const handleSubmit = async () => {
     if (!email || !pass) {
@@ -27,9 +28,19 @@ export default function Login({ onLogin, backToCartAvailable = false, onBackToCa
         setError("Invalid email or password");
         return;
       }
+
       setUsername(userData.username);
       setError("");
-      onLogin(userData); // pass user data to parent (App.jsx)
+
+      // Fetch order history after login
+      try {
+        const ordersRes = await axios.get(`https://node-apps-gagan.vercel.app/orders/${email}`);
+        setOrders(ordersRes.data || []);
+      } catch {
+        setOrders([]);
+      }
+
+      onLogin(userData);
     } catch (err) {
       setError("Invalid email or password");
     }
@@ -38,7 +49,8 @@ export default function Login({ onLogin, backToCartAvailable = false, onBackToCa
   if (showRegister)
     return <Register goToLogin={() => setShowRegister(false)} />;
 
-  if (username && !backToCartAvailable) return <Welcome username={username} />;
+  if (username && !backToCartAvailable)
+    return <Welcome username={username} orders={orders} />;
 
   return (
     <div>

@@ -1,13 +1,44 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export default function Cart({
-  cartItems,
-  addToCart,
-  isLoggedIn,
-  onOrder,
-  onLoginRedirect,
-}) {
-  const items = Object.values(cartItems);
+export default function Cart({ cart, addToCart, user }) {
+  const items = Object.values(cart);
+  const navigate = useNavigate();
+
+  const totalPrice = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+  const placeOrder = async () => {
+    try {
+      const formattedItems = items.map(({ name, price, quantity }) => ({
+        name,
+        price,
+        qty: quantity,
+      }));
+
+      await axios.post("https://node-apps-gagan.vercel.app/api/orders", {
+        email: user.email,
+        items: formattedItems,
+        total: totalPrice,
+      });
+
+      alert("Order successful, Thank you!");
+    } catch (err) {
+      alert("Error placing order.");
+    }
+  };
+
+  if (!user) {
+    return (
+      <div className="cart-container">
+        <h2>Please Login</h2>
+        <button onClick={() => navigate("/login")}>Login to proceed with order</button>
+      </div>
+    );
+  }
 
   if (items.length === 0) {
     return (
@@ -18,11 +49,6 @@ export default function Cart({
     );
   }
 
-  const totalPrice = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
-
   return (
     <div className="cart-container">
       <h2>Your Cart</h2>
@@ -30,7 +56,6 @@ export default function Cart({
         <div key={item._id} className="cart-item">
           <h3>{item.name}</h3>
           <p>Price: ₹{item.price}</p>
-
           <div className="cart-controls">
             <button
               onClick={() => addToCart(item, item.quantity - 1)}
@@ -39,23 +64,13 @@ export default function Cart({
               -
             </button>
             <span>{item.quantity}</span>
-            <button onClick={() => addToCart(item, item.quantity + 1)}>
-              +
-            </button>
+            <button onClick={() => addToCart(item, item.quantity + 1)}>+</button>
           </div>
-
           <p>Total: ₹{item.price * item.quantity}</p>
         </div>
       ))}
-
       <h3>Total Price: ₹{totalPrice.toFixed(2)}</h3>
-
-      {/* Conditional button based on login status */}
-      {!isLoggedIn ? (
-        <button onClick={onLoginRedirect}>Login to proceed with order</button>
-      ) : (
-        <button onClick={onOrder}>Order</button>
-      )}
+      <button onClick={placeOrder}>Order</button>
     </div>
   );
 }

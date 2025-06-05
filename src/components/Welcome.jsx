@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
-export default function Welcome({ username, onBackToCart }) {
+export default function Welcome({ user }) {
   return (
     <div>
-      <h2>Welcome, {username}!</h2>
-      <button onClick={onBackToCart}>Back to Cart</button>
+      <h2>Welcome, {user?.username || "User"}!</h2>
+      <Link to="/cart">Back to Cart</Link> | <Link to="/orders">Order History</Link>
     </div>
   );
 }
