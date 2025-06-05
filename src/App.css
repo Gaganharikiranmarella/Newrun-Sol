@@ -7,21 +7,21 @@
 
 body {
   font-family: 'Poppins', 'Segoe UI', sans-serif;
-  background-color: rgba(255, 255, 255, 0.03); /* VERY translucent white */
+  background-color: rgba(255, 255, 255, 0.03); /* very translucent white */
   color: #222;
   line-height: 1.6;
-  transition: background-color 0.5s ease;
   min-height: 100vh;
+  transition: background-color 0.5s ease;
 }
 
-/* ====== Header Navigation (Glassmorphism + Modern) ====== */
+/* ====== Header Navigation ====== */
 header {
-  backdrop-filter: blur(12px);
-  background: rgba(0, 119, 204, 0.15); /* translucent blue */
+  backdrop-filter: blur(15px);
+  background: rgba(0, 119, 204, 0.35); /* stronger translucent blue */
   padding: 20px 30px;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -29,59 +29,59 @@ header {
 }
 
 header h1 {
-  color: #ffffff;
-  font-size: 2rem;
-  margin-bottom: 10px;
-  font-weight: 600;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
 }
 
 header nav {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 22px;
   flex-wrap: wrap;
 }
 
 header a {
-  color: #ffffff;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 18px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.35);
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
-  transition: all 0.3s ease-in-out;
-}
-
-header a:hover {
-  background-color: rgba(255, 255, 255, 0.25);
-  color: #0077cc;
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 4px 20px rgba(0, 119, 204, 0.6);
-}
-
-/* ====== Buttons (Glow + Smaller) ====== */
-button {
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
-  color: white;
-  border: none;
-  padding: 8px 16px;  /* smaller padding */
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;  /* smaller font */
-  font-weight: 600;
-  box-shadow: 0 0 12px rgba(0, 114, 255, 0.6);
   transition: all 0.3s ease;
 }
 
-button:hover {
+header a:hover {
+  background-color: rgba(255, 255, 255, 0.45);
+  color: #005fa3;
+  transform: translateY(-2px) scale(1.07);
+  box-shadow: 0 0 28px rgba(0, 119, 204, 0.9);
+}
+
+/* ====== Buttons ====== */
+button {
   background: linear-gradient(135deg, #0072ff, #00c6ff);
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(0, 114, 255, 0.9);
+  color: white;
+  border: none;
+  padding: 7px 14px;  /* smaller */
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;  /* smaller */
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(0, 114, 255, 0.8);
+  transition: all 0.35s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(0, 114, 255, 1);
 }
 
 /* ====== Inputs & Selects ====== */
@@ -89,12 +89,12 @@ input, select {
   width: 100%;
   padding: 8px;
   margin: 8px 0;
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 6px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
   font-size: 14px;
-  background: rgba(255,255,255,0.05);  /* very translucent background */
+  background: rgba(255, 255, 255, 0.12);
   color: #222;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
   transition: border-color 0.3s ease;
 }
 
@@ -107,11 +107,11 @@ input:focus, select:focus {
 .form-container {
   max-width: 400px;
   margin: 30px auto;
-  background: rgba(255, 255, 255, 0.05);  /* VERY translucent */
-  backdrop-filter: blur(15px);
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(20px);
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
 /* ====== Product Layout ====== */
@@ -130,23 +130,23 @@ input:focus, select:focus {
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  gap: 22px;
   padding: 10px;
 }
 
 .product-card {
-  background-color: rgba(255, 255, 255, 0.05); /* VERY translucent */
-  backdrop-filter: blur(12px);
-  padding: 15px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+  background-color: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(20px);
+  padding: 18px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 20px rgba(0, 114, 255, 0.3);
+  transform: scale(1.04);
+  box-shadow: 0 8px 28px rgba(0, 114, 255, 0.4);
 }
 
 .product-card h2 {
@@ -196,8 +196,8 @@ input:focus, select:focus {
 
 .about-image img {
   max-width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
 }
 
 .other-works-button {
@@ -207,21 +207,21 @@ input:focus, select:focus {
 /* ====== Media Queries for translucent background colors ====== */
 @media (min-width: 1025px) {
   body {
-    background-color: rgba(255, 255, 150, 0.03); /* very translucent yellow */
+    background-color: rgba(255, 255, 150, 0.05);
   }
 
   header {
-    background: rgba(144, 238, 144, 0.12); /* very translucent green */
+    background: rgba(144, 238, 144, 0.3);
   }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
   body {
-    background-color: rgba(255, 0, 0, 0.03); /* very translucent red */
+    background-color: rgba(255, 0, 0, 0.05);
   }
 
   header {
-    background-color: rgba(0, 0, 255, 0.12); /* very translucent blue */
+    background-color: rgba(0, 0, 255, 0.3);
   }
 }
 
@@ -229,13 +229,13 @@ input:focus, select:focus {
   body {
     background: linear-gradient(
       135deg,
-      rgba(255, 0, 0, 0.03),
-      rgba(255, 192, 203, 0.03),
-      rgba(144, 238, 144, 0.03)
-    ); /* red, pink, green */
+      rgba(255, 0, 0, 0.05),
+      rgba(255, 192, 203, 0.05),
+      rgba(144, 238, 144, 0.05)
+    );
   }
 
   header {
-    background: rgba(255, 105, 180, 0.12); /* translucent pink */
+    background: rgba(255, 105, 180, 0.3);
   }
 }
