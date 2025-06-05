@@ -23,7 +23,7 @@ export default function AboutUs() {
         <div className="about-text">
           <h1>About Us</h1>
           <p>
-            {name}
+            {name} <br />
             I am Marella Gagan. I believe in writing clean and scalable code and
             constantly learning. This Website is made using MERN Stack, with the
             front end utilizing React.js and the back end using Node.js and
