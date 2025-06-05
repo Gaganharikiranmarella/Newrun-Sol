@@ -7,9 +7,8 @@
 
 body {
   font-family: 'Poppins', 'Segoe UI', sans-serif;
-  /* VERY translucent background */
-  background-color: rgba(255, 255, 255, 0.05);
-  color: #333;
+  background-color: rgba(255, 255, 255, 0.03); /* VERY translucent white */
+  color: #222;
   line-height: 1.6;
   transition: background-color 0.5s ease;
   min-height: 100vh;
@@ -18,11 +17,11 @@ body {
 /* ====== Header Navigation (Glassmorphism + Modern) ====== */
 header {
   backdrop-filter: blur(12px);
-  background: rgba(0, 119, 204, 0.15);
+  background: rgba(0, 119, 204, 0.15); /* translucent blue */
   padding: 20px 30px;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -30,11 +29,11 @@ header {
 }
 
 header h1 {
-  color: #fff;
-  font-size: 2.2rem;
+  color: #ffffff;
+  font-size: 2rem;
   margin-bottom: 10px;
   font-weight: 600;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 header nav {
@@ -47,35 +46,35 @@ header nav {
 header a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 16px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
   transition: all 0.3s ease-in-out;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
 }
 
 header a:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.25);
   color: #0077cc;
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 119, 204, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 119, 204, 0.6);
 }
 
-/* ====== Buttons (Glow + Smooth) ====== */
+/* ====== Buttons (Glow + Smaller) ====== */
 button {
   background: linear-gradient(135deg, #00c6ff, #0072ff);
   color: white;
   border: none;
-  padding: 12px 20px;
+  padding: 8px 16px;  /* smaller padding */
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  box-shadow: 0 0 15px rgba(0, 114, 255, 0.6);
+  font-size: 14px;  /* smaller font */
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(0, 114, 255, 0.6);
   transition: all 0.3s ease;
 }
 
@@ -85,15 +84,15 @@ button:hover {
   box-shadow: 0 0 25px rgba(0, 114, 255, 0.9);
 }
 
-/* ====== Forms ====== */
+/* ====== Inputs & Selects ====== */
 input, select {
   width: 100%;
-  padding: 10px;
+  padding: 8px;
   margin: 8px 0;
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 6px;
-  font-size: 15px;
-  background: rgba(255,255,255,0.1);
+  font-size: 14px;
+  background: rgba(255,255,255,0.05);  /* very translucent background */
   color: #222;
   backdrop-filter: blur(6px);
   transition: border-color 0.3s ease;
@@ -108,7 +107,7 @@ input:focus, select:focus {
 .form-container {
   max-width: 400px;
   margin: 30px auto;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);  /* VERY translucent */
   backdrop-filter: blur(15px);
   padding: 25px;
   border-radius: 12px;
@@ -136,11 +135,11 @@ input:focus, select:focus {
 }
 
 .product-card {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05); /* VERY translucent */
   backdrop-filter: blur(12px);
   padding: 15px;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.12);
   box-shadow: 0 2px 12px rgba(0,0,0,0.03);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -205,16 +204,6 @@ input:focus, select:focus {
   margin-top: 20px;
 }
 
-/* ====== Animations for buttons and hover ====== */
-@keyframes glowPulse {
-  0%, 100% {
-    box-shadow: 0 0 10px rgba(0, 114, 255, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(0, 114, 255, 0.8);
-  }
-}
-
 /* ====== Media Queries for translucent background colors ====== */
 @media (min-width: 1025px) {
   body {
@@ -247,6 +236,6 @@ input:focus, select:focus {
   }
 
   header {
-    background: rgba(255, 105, 180, 0.12); /* translucent pink for header */
+    background: rgba(255, 105, 180, 0.12); /* translucent pink */
   }
 }
