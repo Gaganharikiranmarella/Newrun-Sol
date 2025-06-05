@@ -12,7 +12,7 @@ export default function OrderHistory({ email }) {
 
     const fetchOrders = async () => {
       try {
-        const res = await axios.get(`https://node-apps-gagan.vercel.app/api/orders/${effectiveEmail}`);
+        const res = await axios.get(`https://node-apps-gagan.vercel.app/api/orders/${email}`);
         setOrders(res.data);
       } catch (err) {
         console.error("Error loading orders:", err);
