@@ -23,8 +23,8 @@ export default function AboutUs() {
         <div className="about-text">
           <h1>About Us</h1>
           <p>
-            I am {name}, a passionate developer interested in AI, web, and software
-            engineering. I believe in writing clean and scalable code and
+            {name}
+            I am Marella Gagan. I believe in writing clean and scalable code and
             constantly learning. This Website is made using MERN Stack, with the
             front end utilizing React.js and the back end using Node.js and
             Express.js. MongoDB is used for Database connectivity. The entire
