@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Cart({ cart, addToCart, user }) {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const currentUser = user || storedUser;
   const items = Object.values(cart || {});
   const navigate = useNavigate();
   const [isOrdering, setIsOrdering] = useState(false);
@@ -23,7 +25,7 @@ export default function Cart({ cart, addToCart, user }) {
       }));
 
       await axios.post("https://node-apps-gagan.vercel.app/api/orders", {
-        email: user.email,
+        email: currentUser.email,
         items: formattedItems,
         total: totalPrice,
       });
@@ -37,7 +39,7 @@ export default function Cart({ cart, addToCart, user }) {
     }
   };
 
-  if (!user) {
+  if (!currentUser || !currentUser.email) {
     return (
       <div className="cart-container">
         <h2>Please Login</h2>
@@ -65,7 +67,7 @@ export default function Cart({ cart, addToCart, user }) {
           <div className="cart-controls">
             <button
               onClick={() => addToCart(item, Math.max(item.quantity - 1, 0))}
-              disabled={item.quantity === 1} // disable at 1 to prevent zero or negative
+              disabled={item.quantity === 1}
             >
               -
             </button>
