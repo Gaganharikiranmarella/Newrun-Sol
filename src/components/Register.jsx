@@ -9,7 +9,7 @@ export default function Register({ goToLogin }) {
     const email = document.getElementById('reg-email').value;
     const phone = document.getElementById('phone').value;
     const country = document.getElementById('country').value;
-    const password = document.getElementById('password').value;
+    const password = document.getElementById('pass').value;
     const confirmPassword = document.getElementById('confirm').value;
 
     if (password !== confirmPassword) return alert("Passwords do not match");
@@ -20,7 +20,7 @@ export default function Register({ goToLogin }) {
         email,
         phone,
         country,
-        pass: password,  // must be pass to match backend schema
+        password: pass,  // must be pass to match backend schema
       });
       setRegistered(true);
     } catch (err) {

@@ -10,12 +10,12 @@ export default function Login() {
 
   const handleSubmit = async () => {
     const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const pass = document.getElementById('pass').value;
 
     try {
       const res = await axios.post('https://node-apps-gagan.vercel.app/auth/login', {
         email,
-        pass: password,  // must be pass (backend expects this)
+        password: pass,  // must be pass (backend expects this)
       });
       setUsername(res.data.user?.username || '');
       setLoggedIn(true);
