@@ -7,15 +7,19 @@ export default function Login() {
   const [showRegister, setShowRegister] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');  // changed to pass
 
   const handleSubmit = async () => {
-    const email = document.getElementById('email').value;
-    const pass = document.getElementById('pass').value;
+    if (!email || !pass) {
+      alert("Email and password are required.");
+      return;
+    }
 
     try {
       const res = await axios.post('https://node-apps-gagan.vercel.app/auth/login', {
         email,
-        password: pass,  // must be pass (backend expects this)
+        pass,   // use pass here
       });
       setUsername(res.data.user?.username || '');
       setLoggedIn(true);
@@ -30,8 +34,20 @@ export default function Login() {
   return (
     <div>
       <h2>Login</h2>
-      <input id="email" type="email" placeholder="Email" required /><br />
-      <input id="password" type="password" placeholder="Password" required /><br />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+        required
+      /><br />
+      <input
+        type="password"
+        placeholder="Password"
+        value={pass}
+        onChange={e => setPass(e.target.value)}
+        required
+      /><br />
       <button onClick={handleSubmit}>Submit</button><br />
       <button onClick={() => setShowRegister(true)}>Create Account</button>
     </div>

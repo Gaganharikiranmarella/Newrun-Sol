@@ -3,16 +3,22 @@ import axios from 'axios';
 
 export default function Register({ goToLogin }) {
   const [registered, setRegistered] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [country, setCountry] = useState('');
+  const [pass, setPass] = useState('');
+  const [confirmPass, setConfirmPass] = useState('');
 
   const handleRegister = async () => {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('reg-email').value;
-    const phone = document.getElementById('phone').value;
-    const country = document.getElementById('country').value;
-    const password = document.getElementById('pass').value;
-    const confirmPassword = document.getElementById('confirm').value;
-
-    if (password !== confirmPassword) return alert("Passwords do not match");
+    if (pass !== confirmPass) {
+      alert("Passwords do not match");
+      return;
+    }
+    if (!email || !pass) {
+      alert("Email and password are required.");
+      return;
+    }
 
     try {
       await axios.post('https://node-apps-gagan.vercel.app/auth/register', {
@@ -20,7 +26,7 @@ export default function Register({ goToLogin }) {
         email,
         phone,
         country,
-        password: pass,  // must be pass to match backend schema
+        pass,   // use pass here
       });
       setRegistered(true);
     } catch (err) {
@@ -43,17 +49,45 @@ export default function Register({ goToLogin }) {
   return (
     <div>
       <h2>Register</h2>
-      <input id="name" type="text" placeholder="Name (optional)" /><br />
-      <input id="reg-email" type="email" placeholder="Email" required /><br />
-      <input id="phone" type="tel" placeholder="Phone Number (optional)" /><br />
-      <select id="country">
+      <input
+        type="text"
+        placeholder="Name (optional)"
+        value={name}
+        onChange={e => setName(e.target.value)}
+      /><br />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+        required
+      /><br />
+      <input
+        type="tel"
+        placeholder="Phone Number (optional)"
+        value={phone}
+        onChange={e => setPhone(e.target.value)}
+      /><br />
+      <select value={country} onChange={e => setCountry(e.target.value)}>
         <option value="">Select Country (optional)</option>
         <option value="IN">India</option>
         <option value="US">USA</option>
         <option value="UK">UK</option>
       </select><br />
-      <input id="password" type="password" placeholder="Password" required /><br />
-      <input id="confirm" type="password" placeholder="Confirm Password" required /><br />
+      <input
+        type="password"
+        placeholder="Password"
+        value={pass}
+        onChange={e => setPass(e.target.value)}
+        required
+      /><br />
+      <input
+        type="password"
+        placeholder="Confirm Password"
+        value={confirmPass}
+        onChange={e => setConfirmPass(e.target.value)}
+        required
+      /><br />
       <button onClick={handleRegister}>Register</button>
 
       <p
