@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function OrderHistory({ email }) {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const effectiveEmail = email || storedUser?.email;
+
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    if (!email) return;
+    if (!effectiveEmail) return;
 
     const fetchOrders = async () => {
       try {
-        const res = await axios.get(`https://node-apps-gagan.vercel.app/api/orders/${email}`);
+        const res = await axios.get(`https://node-apps-gagan.vercel.app/api/orders/${effectiveEmail}`);
         setOrders(res.data);
       } catch (err) {
         console.error("Error loading orders:", err);
@@ -17,9 +20,9 @@ export default function OrderHistory({ email }) {
     };
 
     fetchOrders();
-  }, [email]);
+  }, [effectiveEmail]);
 
-  if (!email) return <p>Please login to view order history.</p>;
+  if (!effectiveEmail) return <p>Please login to view order history.</p>;
   if (orders.length === 0) return <p>No previous orders found.</p>;
 
   return (

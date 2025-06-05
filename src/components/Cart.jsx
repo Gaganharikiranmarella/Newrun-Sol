@@ -1,32 +1,32 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function Cart({ cart = {}, addToCart, user }) {
+export default function Cart({ cart, addToCart }) {
+  const [currentUser, setCurrentUser] = useState(null);
+  const items = Object.values(cart || {});
   const navigate = useNavigate();
   const [isOrdering, setIsOrdering] = useState(false);
-  const [currentUser, setCurrentUser] = useState(user || null);
 
   useEffect(() => {
-    if (!user) {
-      const savedUser = localStorage.getItem("user");
-      if (savedUser) {
-        setCurrentUser(JSON.parse(savedUser));
+    const stored = localStorage.getItem("user");
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        if (parsed?.email) setCurrentUser(parsed);
+      } catch (err) {
+        console.error("Invalid user in localStorage");
       }
-    } else {
-      setCurrentUser(user);
     }
-  }, [user]);
+  }, []);
 
-  const items = useMemo(() => Object.values(cart || {}), [cart]);
-
-  const totalPrice = useMemo(() =>
-    items.reduce((sum, item) => sum + item.price * item.quantity, 0),
-    [items]
+  const totalPrice = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
   );
 
   const placeOrder = async () => {
-    if (isOrdering || !currentUser?.email) return;
+    if (isOrdering || !currentUser) return;
     setIsOrdering(true);
     try {
       const formattedItems = items.map(({ name, price, quantity }) => ({
@@ -43,14 +43,13 @@ export default function Cart({ cart = {}, addToCart, user }) {
 
       alert("Order successful, Thank you!");
     } catch (err) {
-      console.error("Order Error:", err);
       alert("Error placing order.");
     } finally {
       setIsOrdering(false);
     }
   };
 
-  if (!currentUser || !currentUser.email) {
+  if (!currentUser) {
     return (
       <div className="cart-container">
         <h2>Please Login</h2>
@@ -79,13 +78,17 @@ export default function Cart({ cart = {}, addToCart, user }) {
           <p>Price: ₹{item.price}</p>
           <div className="cart-controls">
             <button
-              onClick={() => addToCart(item, Math.max(item.quantity - 1, 0))}
-              disabled={item.quantity === 1}
+              onClick={() =>
+                addToCart(item, Math.max(item.quantity - 1, 1))
+              }
+              disabled={item.quantity <= 1}
             >
               -
             </button>
             <span>{item.quantity}</span>
-            <button onClick={() => addToCart(item, item.quantity + 1)}>+</button>
+            <button onClick={() => addToCart(item, item.quantity + 1)}>
+              +
+            </button>
           </div>
           <p>Total: ₹{(item.price * item.quantity).toFixed(2)}</p>
         </div>
