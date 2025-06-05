@@ -1,7 +1,13 @@
 import React from "react";
 
-export default function Cart({ cart, addToCart }) {
-  const items = Object.values(cart);
+export default function Cart({
+  cartItems,
+  addToCart,
+  isLoggedIn,
+  onOrder,
+  onLoginRedirect,
+}) {
+  const items = Object.values(cartItems);
 
   if (items.length === 0) {
     return (
@@ -33,7 +39,9 @@ export default function Cart({ cart, addToCart }) {
               -
             </button>
             <span>{item.quantity}</span>
-            <button onClick={() => addToCart(item, item.quantity + 1)}>+</button>
+            <button onClick={() => addToCart(item, item.quantity + 1)}>
+              +
+            </button>
           </div>
 
           <p>Total: ₹{item.price * item.quantity}</p>
@@ -41,6 +49,13 @@ export default function Cart({ cart, addToCart }) {
       ))}
 
       <h3>Total Price: ₹{totalPrice.toFixed(2)}</h3>
+
+      {/* Conditional button based on login status */}
+      {!isLoggedIn ? (
+        <button onClick={onLoginRedirect}>Login to proceed with order</button>
+      ) : (
+        <button onClick={onOrder}>Order</button>
+      )}
     </div>
   );
 }
