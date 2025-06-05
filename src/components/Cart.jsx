@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function Cart({ cart, addToCart, user }) {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const currentUser = user || storedUser;
-  const items = Object.values(cart || {});
+export default function Cart({ cart = {}, addToCart, user }) {
   const navigate = useNavigate();
   const [isOrdering, setIsOrdering] = useState(false);
+  const [currentUser, setCurrentUser] = useState(user || null);
 
-  const totalPrice = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
+  useEffect(() => {
+    if (!user) {
+      const savedUser = localStorage.getItem("user");
+      if (savedUser) {
+        setCurrentUser(JSON.parse(savedUser));
+      }
+    } else {
+      setCurrentUser(user);
+    }
+  }, [user]);
+
+  const items = useMemo(() => Object.values(cart || {}), [cart]);
+
+  const totalPrice = useMemo(() =>
+    items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    [items]
   );
 
   const placeOrder = async () => {
-    if (isOrdering) return; // prevent multiple clicks
+    if (isOrdering || !currentUser?.email) return;
     setIsOrdering(true);
     try {
       const formattedItems = items.map(({ name, price, quantity }) => ({
@@ -31,8 +42,8 @@ export default function Cart({ cart, addToCart, user }) {
       });
 
       alert("Order successful, Thank you!");
-      // Optionally clear cart here or navigate away
     } catch (err) {
+      console.error("Order Error:", err);
       alert("Error placing order.");
     } finally {
       setIsOrdering(false);
@@ -43,7 +54,9 @@ export default function Cart({ cart, addToCart, user }) {
     return (
       <div className="cart-container">
         <h2>Please Login</h2>
-        <button onClick={() => navigate("/login")}>Login to proceed with order</button>
+        <button onClick={() => navigate("/login")}>
+          Login to proceed with order
+        </button>
       </div>
     );
   }
