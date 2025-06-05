@@ -387,3 +387,47 @@ main {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 15px 0;
 }
+
+/* ====== Login/Register Form Container Enhancements ====== */
+.login-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 25px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* ====== Error Message Styling ====== */
+.error-message {
+  color: #d32f2f;
+  font-size: 14px;
+  margin-top: 8px;
+  text-align: center;
+  font-weight: bold;
+  background-color: rgba(211, 47, 47, 0.05);
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(211, 47, 47, 0.3);
+}
+
+/* ====== Back to Cart Button ====== */
+.back-to-cart-btn {
+  background-color: #ffa500;
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 0 10px #ffa50088;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-to-cart-btn:hover {
+  background-color: #cc8400;
+  box-shadow: 0 0 15px #cc8400cc;
+}
