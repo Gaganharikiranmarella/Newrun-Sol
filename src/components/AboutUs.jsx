@@ -1,9 +1,20 @@
-import React from "react";
-import "./App.css";  // assuming your global CSS is here
+import React, { useEffect, useState } from "react";
+import "./App.css";
+
+const API = "https://node-apps-gagan.vercel.app";
 
 export default function AboutUs() {
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    fetch(`${API}/name`)
+      .then((res) => res.text())
+      .then((data) => setName(data))
+      .catch(() => setName("Developer"));
+  }, []);
+
   const openOtherWorks = () => {
-    window.location.href = "/other-works.html"; // change path if needed
+    window.location.href = "https://gaganharikiranmarella.github.io";
   };
 
   return (
@@ -12,19 +23,18 @@ export default function AboutUs() {
         <div className="about-text">
           <h1>About Us</h1>
           <p>
-            We are passionate creators focused on delivering quality projects.
-            Our team combines creativity and technical expertise to build
-            innovative solutions that solve real-world problems. We believe in
-            collaboration, continuous learning, and pushing the boundaries of
-            what's possible.
+            I am {name}, a passionate developer interested in AI, web, and software
+            engineering. I believe in writing clean and scalable code and
+            constantly learning. This Website is made using MERN Stack, with the
+            front end utilizing React.js and the back end using Node.js and
+            Express.js. MongoDB is used for Database connectivity. The entire
+            project is made live and working for global use. Further
+            improvements coming soon!!
           </p>
         </div>
 
         <div className="about-image">
-          <img
-            src="https://via.placeholder.com/400x300.png?text=About+Us+Image"
-            alt="About Us"
-          />
+          <img src="/images/aboutus.jpg" alt="About Us" />
         </div>
       </div>
 

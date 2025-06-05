@@ -6,39 +6,45 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f2f4f7;
-  color: #333;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #222;
   line-height: 1.6;
+  transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(4px);
 }
 
 /* ====== General Containers ====== */
 div {
   padding: 10px;
-  animation: fadeIn 0.5s ease;
+  animation: fadeInUp 1s ease forwards;
 }
 
 h1, h2 {
   color: #0077cc;
   margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* ====== Buttons ====== */
 button {
-  background-color: #0077cc;
+  background-color: rgba(0, 119, 204, 0.7);
   color: white;
   border: none;
-  padding: 10px 14px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 6px;
+  padding: 12px 18px;
+  margin: 10px 0;
+  border-radius: 12px;
   cursor: pointer;
   font-size: 16px;
-  transition: background 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(0, 119, 204, 0.5);
 }
 
 button:hover {
-  background-color: #005fa3;
+  background-color: rgba(0, 95, 163, 0.8);
+  transform: scale(1.07);
+  box-shadow: 0 0 18px rgba(0, 119, 204, 0.8);
 }
 
 /* ====== Inputs & Select ====== */
@@ -47,25 +53,29 @@ input, select {
   padding: 10px;
   margin: 8px 0;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
 }
 
-select {
-  background-color: #fff;
-}
-
-/* ====== Login / Register Layout ====== */
-.form-container {
-  max-width: 400px;
-  margin: 30px auto;
-  background: white;
+/* ====== Form & Product Layout ====== */
+.form-container, .product-card {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
   padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.4s ease;
 }
 
-/* ====== Product List ====== */
+.form-container {
+  max-width: 420px;
+  margin: 40px auto;
+}
+
 .product-container {
   max-width: 900px;
   margin: 30px auto;
@@ -74,7 +84,6 @@ select {
 
 .product-title {
   font-size: 32px;
-  color: #222;
   margin-bottom: 20px;
 }
 
@@ -85,22 +94,8 @@ select {
   padding: 10px;
 }
 
-.product-card {
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease;
-}
-
 .product-card:hover {
-  transform: scale(1.03);
-}
-
-.product-card h2 {
-  font-size: 22px;
-  color: #333;
+  transform: translateY(-5px);
 }
 
 /* ====== Welcome Message ====== */
@@ -109,6 +104,37 @@ select {
   margin-top: 50px;
   font-size: 22px;
   color: #0077cc;
+  animation: fadeInUp 1s ease forwards;
+}
+
+/* ====== Header Navigation ====== */
+header {
+  background: rgba(0, 119, 204, 0.6);
+  padding: 15px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  color: white;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+header a:hover {
+  background-color: rgba(0, 95, 163, 0.6);
 }
 
 /* ====== Link Prompt ====== */
@@ -122,42 +148,12 @@ p[style*="cursor: pointer"]:hover {
   color: #d43f00;
 }
 
-/* ====== Animations ====== */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ====== Header Navigation ====== */
-header {
-  background-color: #0077cc;
-  padding: 15px;
-  text-align: center;
-}
-
-header h1 {
-  color: white;
-  margin-bottom: 10px;
-}
-
-header a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 16px;
-  padding: 8px 12px;
-  border-radius: 5px;
-  transition: background 0.3s ease;
-}
-
-header a:hover {
-  background-color: #005fa3;
-}
-
+/* ====== About Us Section ====== */
 .about-container {
   max-width: 900px;
   margin: 2rem auto;
   padding: 20px;
+  animation: fadeInUp 1s ease forwards;
 }
 
 .about-content {
@@ -171,12 +167,11 @@ header a:hover {
 .about-text {
   flex: 1 1 400px;
   text-align: justify;
-  color: #333;
-}
-
-.about-text h1 {
-  color: #0077cc; /* matches your global h1 style */
-  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 
 .about-image {
@@ -187,10 +182,72 @@ header a:hover {
 
 .about-image img {
   max-width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 
 .other-works-button {
   margin-top: 20px;
+  font-weight: bold;
+}
+
+/* ====== Animations ====== */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== Media Queries ====== */
+
+/* Laptop */
+@media (min-width: 1025px) {
+  body {
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 0, 0.3),
+      rgba(0, 255, 0, 0.3)
+    );
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  body {
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 0, 0, 0.3),
+      rgba(0, 0, 255, 0.3)
+    );
+  }
+}
+
+/* Phone */
+@media (max-width: 767px) {
+  body {
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 0, 0, 0.3),
+      rgba(255, 105, 180, 0.3),
+      rgba(0, 255, 0, 0.3)
+    );
+  }
+
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  .product-title {
+    font-size: 24px;
+  }
 }
