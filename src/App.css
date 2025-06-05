@@ -341,3 +341,49 @@ main {
   border-radius: 20px;
   border: 3px solid transparent;
 }
+
+.cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.cart-controls button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.cart-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.cart-controls span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.cart-container {
+  max-width: 700px;
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+}
