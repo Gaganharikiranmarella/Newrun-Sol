@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Cart({ cart, addToCart, user }) {
-  const items = Object.values(cart);
+  const items = Object.values(cart || {});
   const navigate = useNavigate();
   const [isOrdering, setIsOrdering] = useState(false);
 
