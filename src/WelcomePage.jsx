@@ -40,7 +40,7 @@ export default function WelcomePage() {
     <div className="welcome-container">
       <h1 className="greet">{greet}</h1>
       <h2 className="name">{name}</h2>
-      <button className="go-button" onClick={() => navigate("/products")}>
+      <button className="go-button" onClick={() => navigate("/")}>
         Go to Website
       </button>
     </div>
