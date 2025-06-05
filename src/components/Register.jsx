@@ -15,12 +15,12 @@ export default function Register({ goToLogin }) {
     if (password !== confirmPassword) return alert("Passwords do not match");
 
     try {
-      await axios.post('https://node-apps-gagan.vercel.app/users/register', {
+      await axios.post('https://node-apps-gagan.vercel.app/auth/register', {
         name,
         email,
         phone,
         country,
-        pass: password,  // changed here
+        pass: password,  // must be pass to match backend schema
       });
       setRegistered(true);
     } catch (err) {
@@ -56,7 +56,10 @@ export default function Register({ goToLogin }) {
       <input id="confirm" type="password" placeholder="Confirm Password" required /><br />
       <button onClick={handleRegister}>Register</button>
 
-      <p style={{ marginTop: '1rem', cursor: 'pointer', color: '#ff6f61' }} onClick={goToLogin}>
+      <p
+        style={{ marginTop: '1rem', cursor: 'pointer', color: '#ff6f61' }}
+        onClick={goToLogin}
+      >
         Already have an account? Login
       </p>
     </div>

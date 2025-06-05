@@ -13,11 +13,11 @@ export default function Login() {
     const password = document.getElementById('password').value;
 
     try {
-      const res = await axios.post('https://node-apps-gagan.vercel.app/users/login', {
+      const res = await axios.post('https://node-apps-gagan.vercel.app/auth/login', {
         email,
-        pass: password,  // changed here
+        pass: password,  // must be pass (backend expects this)
       });
-      setUsername(res.data.user?.username || '');  // safe check for username
+      setUsername(res.data.user?.username || '');
       setLoggedIn(true);
     } catch (err) {
       alert("Invalid email or password");
