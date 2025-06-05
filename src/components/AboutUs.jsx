@@ -34,7 +34,7 @@ export default function AboutUs() {
         </div>
 
         <div className="about-image">
-          <img src="public/images/aboutus.jpg" alt="About Us" />
+          <img src="public/aboutus.jpg" alt="About Us" />
         </div>
       </div>
 
