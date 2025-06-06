@@ -79,7 +79,7 @@ export default function Login({ onLogin, backToCartAvailable = false, onBackToCa
 
       {backToCartAvailable && (
         <button onClick={onBackToCart} style={{ marginTop: "10px" }}>
-          Back to Cart
+          Back to Home Page
         </button>
       )}
     </div>
